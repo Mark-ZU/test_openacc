@@ -3,7 +3,7 @@
 #include <iostream>
 #include <chrono>
 
-const int N = 1000;
+const int N = 1200;
 
 void matrix_multiply (float r[N][N], const float a[N][N], const float b[N][N]){
     #pragma acc data copyin(a[0:N][0:N], b[0:N][0:N]) copyout(r[0:N][0:N])
