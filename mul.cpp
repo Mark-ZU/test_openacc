@@ -3,12 +3,12 @@
 #include <iostream>
 #include <chrono>
 
-const int N = 500;
+const int N = 1000;
 
 void matrix_multiply (float r[N][N], const float a[N][N], const float b[N][N]){
     #pragma acc data copyin(a[0:N][0:N], b[0:N][0:N]) copyout(r[0:N][0:N])
     {
-        #pragma acc kernels loop gang, vector(8) independent
+        #pragma acc parallel num_gangs(1024) num_workers(32)
         for (int j = 0; j < N; j++){
             #pragma acc loop independent
             for (int i = 0; i < N; i++){
