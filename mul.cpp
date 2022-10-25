@@ -2,6 +2,7 @@
 #include <ctime>
 #include <iostream>
 #include <chrono>
+#include <cmath>
 
 const int N = 1200;
 
@@ -16,7 +17,7 @@ void matrix_multiply (float r[N][N], const float a[N][N], const float b[N][N]){
                 // #pragma acc loop reduction(+:sum)
                 #pragma acc loop seq
                 for (int k = 0; k < N ; k++)
-                    sum += a[i][k] * b[k][j];
+                    sum += std::sqrt(a[i][k] * b[k][j]);
                 r[i][j] = sum;
             }
         }
